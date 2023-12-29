@@ -1,0 +1,19 @@
+<p *ngIf="selectedUser">previously selected user {{selectedUser}} {{siteAdminType}}</p>
+<input type="text" id="searchInput" >
+<table>
+  <tr>
+    <th>ID</th>
+    <th>User Name</th>
+    <th>Image</th>
+    <th>Site Admin</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let user of userList">
+    <td>{{user.id}}</td>
+    <td>{{user.login}}</td>
+    <td>{{user.avatar_url}}</td>
+    <td>{{user.site_admin | convertBooleanToString : "Yes" : "No"}}</td>
+    <td><a href="javascript:void(0)" (click)="viewDetails(user.id)">View</a> <a href="javascript:void(0)">Edit</a></td>
+  </tr>
+</table>
+

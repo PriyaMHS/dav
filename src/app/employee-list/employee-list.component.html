@@ -1,0 +1,20 @@
+<p>{{hello}} employee-list works!</p>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Role</th>
+    <th>Project</th>
+    <th>Phone number</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let employee of employeeList, let even= even">
+    <td>{{employee.id}}</td>
+    <td>{{employee.name}}</td>
+    <td>{{employee.position}}</td>
+    <td>{{employee.Project}}</td>
+    <td *ngIf="even">{{employee.phone | phonenumber }}</td>
+    <td *ngIf="!even">{{employee.phone | phonenumber : "india" }}</td>
+    <td><a href="javascript:void(0)" (click)="viewDetails(employee.id)">View</a> <a href="javascript:void(0)">Edit</a></td>
+  </tr>
+</table>
