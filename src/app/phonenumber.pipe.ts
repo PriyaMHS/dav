@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PhonenumberPipe implements PipeTransform {
 
-  transform(value: string, ...args: string[]): unknown {
+  transform(value: string, ...args: string[]): string {
     if(value) {
       if(args && args[0] === "india") {
         let part1 = value.substr(0,2);
@@ -20,7 +20,7 @@ export class PhonenumberPipe implements PipeTransform {
         return  "+1 (" + part1+ ") "+ part2 + " - " + part3;
       }
     }
-    return value;
+     return value;
   }
 
 }

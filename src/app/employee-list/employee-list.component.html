@@ -1,4 +1,7 @@
 <p>{{hello}} employee-list works!</p>
+<input type="text" class="highlight" appHighlightInput [color]="'red'">
+
+<input type="text" class="highlight" appHighlightInput   [color]="'green'">
 <table>
   <tr>
     <th>ID</th>
@@ -12,7 +15,7 @@
     <td>{{employee.id}}</td>
     <td>{{employee.name}}</td>
     <td>{{employee.position}}</td>
-    <td>{{employee.Project}}</td>
+    <td>{{employee.project}}</td>
     <td *ngIf="even">{{employee.phone | phonenumber }}</td>
     <td *ngIf="!even">{{employee.phone | phonenumber : "india" }}</td>
     <td><a href="javascript:void(0)" (click)="viewDetails(employee.id)">View</a> <a href="javascript:void(0)">Edit</a></td>

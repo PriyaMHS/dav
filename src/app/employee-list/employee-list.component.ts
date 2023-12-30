@@ -18,6 +18,7 @@ import { pluck } from 'rxjs';
 })
 export class EmployeeListComponent {
   hello !:string;
+  searchbox = "";
   nonInjectableService = this.injector.get(NonInjectableService);
   employeeService = this.injector.get(EmployeeService);
   constructor(private router: Router, private injector: Injector) {

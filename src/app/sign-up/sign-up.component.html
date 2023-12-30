@@ -1,1 +1,52 @@
 <p>sign-up works!</p>
+<form class="row" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+  <div>
+    <label>Name</label>
+    <input type="text" formControlName="fullName" name="fullName">
+    <div class="error" *ngIf="myForm.get('fullName')?.invalid && !myForm.controls?.['fullName']?.errors?.['required'] && (myForm.get('fullName')?.dirty || myForm.get('fullName')?.touched)">
+      Please provide a name.
+    </div>
+    <div class="error" *ngIf="myForm.get('fullName')?.invalid && myForm.controls?.['fullName']?.errors?.['required'] && (myForm.get('fullName')?.dirty || myForm.get('fullName')?.touched)">Enter a valid name</div>
+  </div>
+  <div>
+    <label>Email</label>
+    <input type="text" formControlName="email">
+    <div class="error" *ngIf="myForm.get('email')?.invalid && (myForm.get('email')?.dirty || myForm.get('email')?.touched)">
+      Please provide a valid email address.
+    </div>
+  </div>
+  <div>
+    <label>Password</label>
+    <input type="password" formControlName="password">
+    <div class="error" *ngIf="myForm.get('password')?.invalid && (myForm.get('password')?.dirty || myForm.get('password')?.touched)">
+      Please provide a valid password.
+    </div>
+  </div>
+  <div>
+    <label>Confirm Password</label>
+    <input type="password" formControlName="confirmPassword">
+    <div class="error" *ngIf="myForm.get('confirmPassword')?.invalid && (myForm.get('confirmPassword')?.dirty || myForm.get('confirmPassword')?.touched)">
+      Please provide a valid confirmPassword
+    </div>
+  </div>
+  <div>
+    <label for="gender">Geneder </label>
+    <input type="radio" value="male" id="gender" name="gender" formControlName="gender"> Male
+    <input type="radio" value="female" id="gender" name="gender" formControlName="gender"> Female
+  </div>
+ 
+ 
+  <div>
+    <label for="country">country </label>
+    <select id="country" name="country" formControlName="country">
+      <option value="1">India</option>
+      <option value="2">USA</option>
+      <option value="3">England</option>
+      <option value="4">Singapore</option>
+    </select>
+  </div>
+  <div>
+    <button [disabled]="myForm.invalid">Submit</button>
+    <button (click)="reset">Clear</button>
+  </div>
+</form>

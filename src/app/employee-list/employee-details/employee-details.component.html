@@ -1,0 +1,11 @@
+
+<div *ngIf="employee">
+  <p>employee-details</p>
+  <p>User Id : {{employee.id}}</p>
+  <p>User name : {{employee.name}}</p>
+  <p>User Project : {{employee.project}}</p>
+  <p>User phone : {{employee.phone}}</p>
+  <p>User position : {{employee.position}}</p>
+  <button (click)="editEmployee= true">Edit Employee</button>
+  <app-edit-employee (randata)="data2" *ngIf="editEmployee" [editEmployeeData]="employee" (emitEmployee)="updateEmployee($event)"></app-edit-employee>
+</div>

@@ -10,3 +10,13 @@ td,th {
 }
 
 a+a{ margin-left: 10px;}
+
+
+.highlight-red, .highlight-red:focus,.highlight { outline: 0; border-width:  3px; }
+
+.highlight-green, .highlight-green:focus { outline: 0; border-width:  3px;}
+
+.background { background-color: yellow;} 
+
+
+

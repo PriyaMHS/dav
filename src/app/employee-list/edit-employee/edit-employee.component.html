@@ -1,0 +1,30 @@
+<div>
+  <p>Edit employee</p>
+  <form  [formGroup]="editEmployeeForm" (submit)="saveEmployee(editEmployeeForm)">
+    <div>
+      <label>Id</label>
+      <input type="text" formControlName="id">
+    </div>
+    <div>
+      <label>Name</label>
+      <input type="text" formControlName="name">
+    </div>
+    <div>
+      <label>Project</label>
+      <input type="text" formControlName="project">
+    </div>
+    <div>
+      <label>Phone Number</label>
+      <input type="text" formControlName="phone">
+    </div>
+    <div>
+      <label>Position</label>
+      <input type="text" formControlName="position">
+    </div>
+    <div>
+      <input type="submit" value="Save">
+      <input type="button" value="Clear" (click)="resetForm()">
+    </div>
+  </form>
+</div>
+  

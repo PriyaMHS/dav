@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -7,14 +6,6 @@ import { UserService } from './user.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'dav';
-  testsite!: string;
-  constructor(private userService: UserService) {
-    this.userService.siteAdmin$.subscribe((admin: string) => {
-      this.testsite = admin;
-      console.log("testsite " + this.testsite);
-    })
-  }
 
   ngOnInit() {
     

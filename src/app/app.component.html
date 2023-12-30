@@ -1,15 +1,5 @@
 <div class="row">
-  <header>
-    <h4>Hello {{testsite}}</h4>
-    <ul>
-      <li [routerLink]="['/routePath']" routerLinkActive="router-link-active" ></li>
-      <li [routerLink]="['/signup']" routerLinkActive="active">Sign up</li>
-      <li [routerLink]="['/employee']" routerLinkActive="active">Employee List</li>
-      <li [routerLink]="['/employee/:id']" routerLinkActive="active">Employee Details</li>
-      <li [routerLink]="['/pagenotfound']" routerLinkActive="active">Page not Found</li>
-      <li [routerLink]="['/user']" routerLinkActive="active">User List</li>
-    </ul>
-  </header>
+  <app-header></app-header>
   <section>
     <router-outlet></router-outlet>
   </section>
