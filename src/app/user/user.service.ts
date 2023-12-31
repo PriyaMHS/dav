@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject, pipe, filter, tap,take, forkJoin, of, from, debounceTime, pluck, switchMap, mergeMap, distinctUntilChanged } from 'rxjs';
+import { BehaviorSubject, Subject, pipe, map, filter, tap,take, forkJoin, of, from, debounceTime, pluck, switchMap, mergeMap, distinctUntilChanged } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -19,6 +19,12 @@ export class UserService {
     //   take(5)
     // );
     return this.http.get('https://api.github.com/users').toPromise();
+  }
+
+  getUserByUserId(id) {
+    return this.http.get('https://api.github.com/users').pipe(
+      map((userList: any) => userList.filter(user => user.id === id)[0])
+    )
   }
 
   setUserId(id: number) {

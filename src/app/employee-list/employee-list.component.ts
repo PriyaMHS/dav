@@ -1,7 +1,7 @@
 import { Component, Inject, Injector, inject } from '@angular/core';
-import { EmployeeService } from '../employee.service';
+import { EmployeeService } from '../services/employee.service';
 import { Router } from '@angular/router';
-import { NonInjectableService } from '../non-injectable.service';
+import { NonInjectableService } from '../services/non-injectable.service';
 import { pluck } from 'rxjs';
 
 @Component({

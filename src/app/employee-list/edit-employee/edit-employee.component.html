@@ -1,29 +1,62 @@
-<div>
-  <p>Edit employee</p>
+<div class="card">
+  <div class="card-header">
+    Employee Details
+  </div>
   <form  [formGroup]="editEmployeeForm" (submit)="saveEmployee(editEmployeeForm)">
-    <div>
-      <label>Id</label>
-      <input type="text" formControlName="id">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Id</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" formControlName="id">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Name</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" formControlName="name">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Project</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" formControlName="project">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Phone Number</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" formControlName="phone">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Position</label>
+            <div class="col-sm-6">
+              <select class="form-control" formControlName="position">
+                <option>BE Developer</option>
+                <option>UI Developer</option>
+              </select>              
+            </div>
+          </div>
+        </div>
+      </div>      
     </div>
-    <div>
-      <label>Name</label>
-      <input type="text" formControlName="name">
-    </div>
-    <div>
-      <label>Project</label>
-      <input type="text" formControlName="project">
-    </div>
-    <div>
-      <label>Phone Number</label>
-      <input type="text" formControlName="phone">
-    </div>
-    <div>
-      <label>Position</label>
-      <input type="text" formControlName="position">
-    </div>
-    <div>
-      <input type="submit" value="Save">
-      <input type="button" value="Clear" (click)="resetForm()">
+    <div class="card-footer text-center">
+      <input type="submit" value="Save" class="btn btn-primary">
+      <input type="button" value="Clear" class="btn btn-secondary" (click)="resetForm()">
     </div>
   </form>
 </div>

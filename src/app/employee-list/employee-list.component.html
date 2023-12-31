@@ -1,23 +1,41 @@
-<p>{{hello}} employee-list works!</p>
-<input type="text" class="highlight" appHighlightInput [color]="'red'">
+<div class="form-group">
+  <label for="exampleInputEmail1">Directives</label>
+  <div class="row">
+    <div class="col-md-4">
+      <input type="text" class="form-control highlight" appHighlightInput placeholder="Enter Text" [color]="'red'">
+    </div>
+    <div class="col-md-4">
+      <input type="text" class="form-control highlight" appHighlightInput placeholder="Enter Text"   [color]="'green'">
+    </div>
+  </div>
+</div>
 
-<input type="text" class="highlight" appHighlightInput   [color]="'green'">
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Role</th>
-    <th>Project</th>
-    <th>Phone number</th>
-    <th>Action</th>
-  </tr>
-  <tr *ngFor="let employee of employeeList, let even= even">
-    <td>{{employee.id}}</td>
-    <td>{{employee.name}}</td>
-    <td>{{employee.position}}</td>
-    <td>{{employee.project}}</td>
-    <td *ngIf="even">{{employee.phone | phonenumber }}</td>
-    <td *ngIf="!even">{{employee.phone | phonenumber : "india" }}</td>
-    <td><a href="javascript:void(0)" (click)="viewDetails(employee.id)">View</a> <a href="javascript:void(0)">Edit</a></td>
-  </tr>
-</table>
+
+<div class="table-responsive-lg">
+  <p>{{hello}} employee-list works!</p>
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Project</th>
+        <th>Phone number</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employeeList, let even= even">
+        <td>{{employee.id}}</td>
+        <td>{{employee.name}}</td>
+        <td>{{employee.position}}</td>
+        <td>{{employee.project}}</td>
+        <td *ngIf="even">{{employee.phone | phonenumber }}</td>
+        <td *ngIf="!even">{{employee.phone | phonenumber }}</td>
+        <td>
+          <a href="javascript:void(0)" (click)="viewDetails(employee.id)" class="btn btn-secondary">View</a> 
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,1 +1,20 @@
-<p>user-details works!</p>
+
+<div *ngIf="user">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          User Details
+        </div>
+        <div class="card-body">
+          <p class="card-text">User Id : {{user.id}}</p>
+          <p class="card-text">User name : {{user.login}}</p>
+          <p class="card-text">User Avatar : {{user.avatar_url}}</p>
+          <p class="card-text">Admin : {{user.site_admin | convertBooleanToString : "Yes" : "No"}}</p>
+          <a (click)="redirectTo('prev')" *ngIf="currentUserIndex > 0" class="btn btn-primary">Prev User</a>
+          <a (click)="redirectTo('next')" *ngIf="currentUserIndex < userSize-1" class="btn btn-primary">Next User</a>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>

@@ -1,3 +1,10 @@
 .error {
   color: red;
+  font-size: 10px;
 }
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.btn + .btn { margin-left: 20px;}

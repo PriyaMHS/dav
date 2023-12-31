@@ -10,14 +10,14 @@ import { Router } from './app.route';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule} from '@angular/common/http';
 // import { EmployeeService } from './employee.service';
-import { PhonenumberPipe } from './phonenumber.pipe';
-import { HighlightInputDirective } from './highlight-input.directive';
+import { PhonenumberPipe } from './pipe/phonenumber.pipe';
+import { HighlightInputDirective } from './directives/highlight-input.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { HeaderComponent } from './header/header.component';
-import { UserModule } from './user/user.module';
 import { EditEmployeeComponent } from './employee-list/edit-employee/edit-employee.component';
-// import { RadioButtonModule } from 'primeng/radiobutton';
+import { HomeComponent } from './home/home.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -30,14 +30,15 @@ import { EditEmployeeComponent } from './employee-list/edit-employee/edit-employ
     HighlightInputDirective,
     ProfileComponent,
     HeaderComponent,
-    EditEmployeeComponent
+    EditEmployeeComponent,
+    HomeComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(Router),
     HttpClientModule,
     FormsModule,
-    UserModule,
     ReactiveFormsModule
   ],
   providers: [],

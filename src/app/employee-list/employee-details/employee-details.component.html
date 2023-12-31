@@ -1,11 +1,24 @@
 
 <div *ngIf="employee">
-  <p>employee-details</p>
-  <p>User Id : {{employee.id}}</p>
-  <p>User name : {{employee.name}}</p>
-  <p>User Project : {{employee.project}}</p>
-  <p>User phone : {{employee.phone}}</p>
-  <p>User position : {{employee.position}}</p>
-  <button (click)="editEmployee= true">Edit Employee</button>
-  <app-edit-employee (randata)="data2" *ngIf="editEmployee" [editEmployeeData]="employee" (emitEmployee)="updateEmployee($event)"></app-edit-employee>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          Employee Details
+        </div>
+        <div class="card-body">
+          <p class="card-text">User Id : {{employee.id}}</p>
+          <p class="card-text">User name : {{employee.name}}</p>
+          <p class="card-text">User Project : {{employee.project}}</p>
+          <p class="card-text">User phone : {{employee.phone | phonenumber}}</p>
+          <p class="card-text">User position : {{employee.position}}</p>
+          <a [routerLink]="['/employee']" class="btn btn-primary">Back to Employee List</a>
+          <a (click)="editEmployee= true" class="btn btn-primary">Edit Employee</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <app-edit-employee (randata)="data2" *ngIf="editEmployee" [editEmployeeData]="employee" (emitEmployee)="updateEmployee($event)"></app-edit-employee>
+    </div>
+  </div>  
 </div>

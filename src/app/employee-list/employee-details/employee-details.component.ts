@@ -1,5 +1,5 @@
-import { Component, Injector, inject } from '@angular/core';
-import { EmployeeService } from 'src/app/employee.service';
+import { Component, Injector, SimpleChanges, inject } from '@angular/core';
+import { EmployeeService } from 'src/app/services/employee.service';
 import { Employee } from '../employee.model';
 import { ActivatedRoute } from '@angular/router';
 
@@ -28,11 +28,11 @@ export class EmployeeDetailsComponent {
     })
   }
 
-  ngOnchanges(simplechange) {
-    console.log("on change called ", simplechange);
+  ngOnchanges(changes: SimpleChanges) {
+    console.log("on change called ", changes);
   }
 
-  ngDocheck() {
+  ngDoCheck() {
     console.log("Do check called");
   }
 

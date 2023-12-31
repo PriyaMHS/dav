@@ -1,19 +1,33 @@
-<p *ngIf="selectedUser">previously selected user {{selectedUser}} {{siteAdminType}}</p>
 <input type="text" id="searchInput" >
-<table>
-  <tr>
-    <th>ID</th>
-    <th>User Name</th>
-    <th>Image</th>
-    <th>Site Admin</th>
-    <th>Action</th>
-  </tr>
-  <tr *ngFor="let user of userList">
-    <td>{{user.id}}</td>
-    <td>{{user.login}}</td>
-    <td>{{user.avatar_url}}</td>
-    <td>{{user.site_admin | convertBooleanToString : "Admin" : "Clinic"}}</td>
-    <td><a href="javascript:void(0)" (click)="viewDetails(user.id)">View</a> <a href="javascript:void(0)">Edit</a></td>
-  </tr>
-</table>
+<div class="table-responsive-lg">
+  <p *ngIf="selectedUser">previously selected user {{selectedUser}} {{siteAdminType}}</p>
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th>ID</th>
+        <th>User Name</th>
+        <th>Image</th>
+        <th>Site Admin</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userList| paginate: { itemsPerPage: 8, currentPage: p }">
+        <td>{{user.id}}</td>
+        <td>{{user.login}}</td>
+        <td>{{user.avatar_url}}</td>
+        <td>{{user.site_admin | convertBooleanToString : "Admin" : "Clinic"}}</td>
+        <td>
+          <a href="javascript:void(0)" (click)="viewDetails(user.id)" class="btn btn-secondary">View</a> 
+        </td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { UserService } from './user.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Subscription, interval, takeUntil, take, flatMap,fromEvent,debounceTime, mergeMap, switchMap, distinctUntilChanged } from 'rxjs';
 
@@ -15,6 +15,8 @@ export class UserComponent {
   siteAdminType!: string;
   // destroy$: Subject<boolean> = new Subject<boolean>();
   destroy$ !: Subscription;
+  activateRoute: ActivatedRoute = inject(ActivatedRoute);
+  p = 1;
   constructor(private userService: UserService, private router: Router, private http: HttpClient) {
     this.userService.userId$.subscribe((id: number)=> {
       this.selectedUser = id
@@ -34,19 +36,21 @@ export class UserComponent {
     // this.destroy$ = interval(1000).pipe(flatMap(() => this.userService.getUserList())).subscribe((list: any)=> {
     //   this.userList = list;
     // })
-    let index = 1;
-    interval(1000).pipe(take(5),flatMap(() => this.userService.getUserList())).subscribe((list: any)=> {
-      console.log("called " + index);
-      index++;
-      this.userList = list;
-    })
-
+    // let index = 1;
+    // interval(1000).pipe(take(5),flatMap(() => this.userService.getUserList())).subscribe((list: any)=> {
+    //   console.log("called " + index);
+    //   index++;
+    //   this.userList = list;
+    // })
     //promise
+    // this.activateRoute.params.subscribe((params) => {
+    //   console.log("pppppppppppppppp",params);
+    // })
     this.userService.getUserList().then((list: any)=>{
       this.userList = list;
     })
 
-    this.rxjsFunCall();
+    // this.rxjsFunCall();
 
     // this.promiseChain();
     // this.promiseAllMethod();

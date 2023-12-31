@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { filter, of, from, pluck, map } from 'rxjs';
-import  data  from './../assets/employee.json';
+import  data  from '../../assets/employee.json';
 
 // @Injectable({
 //   providedIn: 'root'

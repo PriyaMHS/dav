@@ -6,10 +6,13 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { ConvertBooleanToStringPipe } from './convert-boolean-to-string.pipe';
 import { RouterModule, Routes } from '@angular/router';
 import { UserService } from './user.service';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { AuthGaurdService } from '../services/authGuard.service';
+
 
 const routes: Routes = [
-  {path: 'user', component: UserComponent},
-  {path: 'user/:id', component: UserDetailsComponent}
+  {path: '', component: UserComponent},
+  {path: ':id', component: UserDetailsComponent}
 ]
 
 @NgModule({
@@ -21,6 +24,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    NgxPaginationModule
   ],
   providers: [UserService],
   bootstrap: []

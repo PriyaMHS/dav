@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,25 +8,23 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SignUpComponent {
   myForm!: FormGroup;
+  @ViewChild('signupForm') formData: NgForm;
+  countrySelect = "2";
+  genderRadio= 'male';
   constructor(private fb: FormBuilder) {
 
   }
-  ngOnInit() {
-    this.myForm = this.fb.group({
-      fullName: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
-      email: ['', Validators.required, Validators.email],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
-      country: ['', Validators.required],
-      gender: ['', Validators.required]
-    })
-  }
 
-  onSubmit(formData: FormGroup) {
-    console.log(formData);
+  signUp() {
+    console.log(this.formData);
+    console.log(this.formData.value);
   }
 
   reset() {
-    this.myForm.reset();
+    this.formData.form.reset();
+    this.formData.form.patchValue({
+      inlineRadioOptions: 'male',
+      country: "2"
+    })
   }
 }
