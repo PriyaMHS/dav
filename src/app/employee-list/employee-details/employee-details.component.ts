@@ -23,6 +23,7 @@ export class EmployeeDetailsComponent {
 
   ngOnInit() {
     let id = parseInt((this.activatedRoute.snapshot.paramMap).get('id'));
+    // console.log("pppppppppppppppppppppp", (this.activatedRoute.snapshot.queryParamMap).get('name'));
     this.employeeService.getEmployeeById(id).subscribe((data: Employee) => {
       this.employee = data;
     })

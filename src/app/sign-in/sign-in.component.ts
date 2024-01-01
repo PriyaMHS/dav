@@ -15,4 +15,8 @@ export class SignInComponent {
     this.router.navigate(['/profile']);
 
   }
+
+  ngOnDestroy() {
+    return this.form.dirty;
+  }
 }

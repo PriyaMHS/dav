@@ -1,64 +1,96 @@
 <div class="row">
-  <form>
-    <div class="form-row">
-      <div class="col-md-4 mb-3">
+  <form [formGroup]="profileForm" (ngSubmit)="saveProfile(profileForm)" novalidate>
+    <div class="form-row row">
+      <div class="col-md-6 mb-3">
         <label for="validationCustom01">First name</label>
-        <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required>
-        <div class="valid-feedback">
-          Looks good!
+        <input type="text" class="form-control" id="validationCustom01" formControlName="fname" placeholder="First name">
+        <div class="col-md-12">
+          <div class="error" *ngIf="profileForm.controls['fname']?.invalid && profileForm.controls['fname']?.errors?.['required'] && (profileForm.controls['fname']?.dirty || profileForm.controls['fname']?.touched)">
+            Please provide a first name.
+          </div>
+          <div class="error" *ngIf="profileForm.controls['fname']?.invalid && profileForm.controls['fname']?.errors?.['invalidFirstName'] && (profileForm.controls['fname']?.dirty || profileForm.controls['fname']?.touched)">
+            Please provide valid first name.
+          </div>
         </div>
       </div>
-      <div class="col-md-4 mb-3">
+      <div class="col-md-6 mb-3">
         <label for="validationCustom02">Last name</label>
-        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
-        <div class="valid-feedback">
-          Looks good!
+        <input type="text" class="form-control" id="validationCustom02" formControlName="lname" placeholder="Last name">
+        <div class="col-md-12">
+          <div class="error" *ngIf="profileForm.controls['lname']?.invalid && profileForm.controls['lname']?.errors?.['required'] && (profileForm.controls['lname']?.dirty || profileForm.controls['lname']?.touched)">
+            Please provide a last name.
+          </div>
         </div>
       </div>
-      <div class="col-md-4 mb-3">
+      <div class="col-md-6 mb-3">
         <label for="validationCustomUsername">Username</label>
         <div class="input-group">
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroupPrepend">@</span>
           </div>
-          <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
-          <div class="invalid-feedback">
-            Please choose a username.
+          <input type="text" class="form-control" id="validationCustomUsername" formControlName="uname" placeholder="Username" aria-describedby="inputGroupPrepend">
+          <div class="col-md-12">
+            <div class="error" *ngIf="profileForm.controls['uname']?.invalid && profileForm.controls['uname']?.errors?.['required'] && (profileForm.controls['uname']?.dirty || profileForm.controls['uname']?.touched)">
+              Please provide username.
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="form-row">
+    <div class="form-row row">
       <div class="col-md-6 mb-3">
         <label for="validationCustom03">City</label>
-        <input type="text" class="form-control" id="validationCustom03" placeholder="City" required>
-        <div class="invalid-feedback">
-          Please provide a valid city.
+        <input type="text" class="form-control" id="validationCustom03" formControlName="city" placeholder="City">
+        <div class="col-md-12">
+          <div class="error" *ngIf="profileForm.controls['city']?.invalid && profileForm.controls['city']?.errors?.['required'] && (profileForm.controls['city']?.dirty || profileForm.controls['city']?.touched)">
+            Please provide city.
+          </div>
         </div>
       </div>
       <div class="col-md-3 mb-3">
         <label for="validationCustom04">State</label>
-        <input type="text" class="form-control" id="validationCustom04" placeholder="State" required>
-        <div class="invalid-feedback">
-          Please provide a valid state.
+        <input type="text" class="form-control" id="validationCustom04" formControlName="state" placeholder="State">
+        <div class="col-md-12">
+          <div class="error" *ngIf="profileForm.controls['state']?.invalid && profileForm.controls['state']?.errors?.['required'] && (profileForm.controls['state']?.dirty || profileForm.controls['state']?.touched)">
+            Please provide state.
+          </div>
         </div>
       </div>
       <div class="col-md-3 mb-3">
         <label for="validationCustom05">Zip</label>
-        <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" required>
-        <div class="invalid-feedback">
-          Please provide a valid zip.
+        <input type="text" class="form-control" id="validationCustom05" formControlName="zip" placeholder="Zip" >
+        <div class="col-md-12">
+          <div class="error" *ngIf="profileForm.controls['zip']?.invalid && profileForm.controls['zip']?.errors?.['required'] && (profileForm.controls['zip']?.dirty || profileForm.controls['zip']?.touched)">
+            Please provide zip.
+          </div>
         </div>
       </div>
     </div>
-    <div class="form-row">
-      <div class="col-md-6 mb-3">
-        <label for="validationCustom03">Skill</label>
-        <input type="text" class="form-control" id="validationCustom03" placeholder="Slill" required>
-        <button class="btn btn-primary" type="submit">Remove Skill</button>
-        <button class="btn btn-primary" type="submit">Add Skill</button>
+    <div class="form-row" formArrayName="skills">
+      <div class="skill-wrap row" *ngFor="let skill of skills.controls; let i=index" >
+        <ng-container [formGroupName]="i">
+          <label for="validationCustom03" class="col-md-12">{{i+1}} Skill</label>
+          <div class="col-md-6">
+            <input type="text" class="form-control" id="validationCustom03"  formControlName="skill" placeholder="Slill">
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-warning" type="submit"  (click)="removeSkill(i)">Remove Skill</button>
+          </div>
+        </ng-container>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button class="btn btn-primary" (click)="addskill()" type="submit">Add Skill</button>
+        </div>
       </div>
     </div>
-    <button class="btn btn-primary" type="submit">Submit form</button>
+    <div class="col-md-12">
+      <div class="error" *ngIf="profileForm.errors?.['invalidForm']">
+        Please provide valid first name for the form.
+      </div>
+    </div>
+    <div class="form-row text-center">
+      <button class="btn btn-primary" type="submit">Submit form</button>
+    </div>
   </form>
 </div>

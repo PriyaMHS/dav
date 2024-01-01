@@ -4,17 +4,19 @@
       <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
           <li class="nav-item">
-            <a class="nav-link" [ngClass]="{active: showPage==='signin'}" (click)="show('signin')">Sign In</a>
+            <a class="nav-link" role="button" [ngClass]="{active: showPage==='signin'}" (click)="show('signin')">Sign In</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [ngClass]="{active: showPage==='signup'}" (click)="show('signup')">Sign Up</a>
+            <a class="nav-link" role="button" [ngClass]="{active: showPage==='signup'}" (click)="show('signup')">Sign Up</a>
           </li>
         </ul>
       </div>
       <div class="card-body">
+        <!-- <router-outlet></router-outlet> -->
         <app-sign-in *ngIf="showPage==='signin'"></app-sign-in>
         <app-sign-up *ngIf="showPage==='signup'"></app-sign-up>
       </div>
     </div>
   </div>  
 </div>
+

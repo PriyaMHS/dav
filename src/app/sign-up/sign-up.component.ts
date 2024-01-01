@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up',
@@ -7,11 +7,10 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent {
-  myForm!: FormGroup;
   @ViewChild('signupForm') formData: NgForm;
   countrySelect = "2";
   genderRadio= 'male';
-  constructor(private fb: FormBuilder) {
+  constructor() {
 
   }
 
@@ -26,5 +25,9 @@ export class SignUpComponent {
       inlineRadioOptions: 'male',
       country: "2"
     })
+  }
+
+  ngOnDestroy() {
+    return this.formData.dirty;
   }
 }

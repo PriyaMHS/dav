@@ -54,11 +54,15 @@
           <div class="form-group row">
             <label class="col-sm-4 col-form-label">Confirm Password</label>
             <div class="col-sm-6">
-              <input type="password" class="form-control" name="confirmPassword" required ngModel>
+              <input type="password" class="form-control" name="confirmPassword" appPasswordvalidator="password"
+              required ngModel>
             </div>
             <div class="col-md-12">
               <div class="error" *ngIf="signupForm.form.controls['confirmPassword']?.invalid && signupForm.form.controls['confirmPassword']?.errors?.['required'] && (signupForm.form.controls['confirmPassword']?.dirty || signupForm.form.controls['confirmPassword']?.touched)">
                 Please provide a valid confirmPassword
+              </div>
+              <div class="error" *ngIf="signupForm.form.controls['confirmPassword']?.invalid && signupForm.form.controls['confirmPassword']?.errors?.['passwordMatchError'] && (signupForm.form.controls['confirmPassword']?.dirty || signupForm.form.controls['confirmPassword']?.touched)">
+                confirmPassword password should be same as password
               </div>
             </div>
           </div>

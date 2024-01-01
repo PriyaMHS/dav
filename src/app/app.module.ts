@@ -18,6 +18,7 @@ import { HeaderComponent } from './header/header.component';
 import { EditEmployeeComponent } from './employee-list/edit-employee/edit-employee.component';
 import { HomeComponent } from './home/home.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { PasswordvalidatorDirective } from './directives/passwordvalidator.directive';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
     HeaderComponent,
     EditEmployeeComponent,
     HomeComponent,
-    SignInComponent
+    SignInComponent,
+    PasswordvalidatorDirective
   ],
   imports: [
     BrowserModule,

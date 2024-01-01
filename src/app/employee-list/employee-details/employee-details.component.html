@@ -12,7 +12,7 @@
           <p class="card-text">User Project : {{employee.project}}</p>
           <p class="card-text">User phone : {{employee.phone | phonenumber}}</p>
           <p class="card-text">User position : {{employee.position}}</p>
-          <a [routerLink]="['/employee']" class="btn btn-primary">Back to Employee List</a>
+          <a [routerLink]="['/employee']" fragment="abc" class="btn btn-primary">Back to Employee List</a>
           <a (click)="editEmployee= true" class="btn btn-primary">Edit Employee</a>
         </div>
       </div>

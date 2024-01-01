@@ -6,9 +6,15 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import { ProfileComponent } from "./profile/profile.component";
 import { AuthGaurdService } from "./services/authGuard.service";
 import { HomeComponent } from "./home/home.component";
+import { SignInComponent } from "./sign-in/sign-in.component";
 
 export const Router: Routes = [
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: HomeComponent,  //canActivate: [AuthGaurdService], 
+  // children: [
+  //   {path: 'signin', component: SignInComponent, canDeactivate: [AuthGaurdService]},
+  //   {path: 'signup', component: SignUpComponent, canDeactivate: [AuthGaurdService]},
+  // ]
+  },
   {path: 'employee', component: EmployeeListComponent},
   {path: 'employee/:id', component: EmployeeDetailsComponent},
   {path: '', pathMatch: 'full', redirectTo: '/home'},
@@ -17,7 +23,8 @@ export const Router: Routes = [
   {
     path: 'user',
     loadChildren: () => import('./user/user.module').then(x => x.UserModule), 
+    canLoad: [AuthGaurdService]
     // resolve: {user: AuthGaurdService}
-},
+  },
   {path: '**', redirectTo: 'pagenotfound'}
 ]
