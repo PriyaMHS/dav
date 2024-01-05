@@ -15,16 +15,16 @@ export const Router: Routes = [
   //   {path: 'signup', component: SignUpComponent, canDeactivate: [AuthGaurdService]},
   // ]
   },
-  {path: 'employee', component: EmployeeListComponent},
+  {path: 'employee', component: EmployeeListComponent, canActivate: [AuthGaurdService]},
   {path: 'employee/:id', component: EmployeeDetailsComponent},
   {path: '', pathMatch: 'full', redirectTo: '/home'},
   {path: 'pagenotfound', component: PageNotFoundComponent},
-  {path: 'profile', component: ProfileComponent},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGaurdService]},
   {
     path: 'user',
     loadChildren: () => import('./user/user.module').then(x => x.UserModule), 
-    canLoad: [AuthGaurdService]
-    // resolve: {user: AuthGaurdService}
+    canLoad: [AuthGaurdService],
+    resolve: {userData: AuthGaurdService}
   },
   {path: '**', redirectTo: 'pagenotfound'}
 ]

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -19,6 +19,9 @@ import { EditEmployeeComponent } from './employee-list/edit-employee/edit-employ
 import { HomeComponent } from './home/home.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { PasswordvalidatorDirective } from './directives/passwordvalidator.directive';
+import { SignInService } from './services/signIn.service';
+import { CustomErrorHandler} from './services/customErrorHandler.service';
+import { RatingInputComponent } from './rating-input/rating-input.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { PasswordvalidatorDirective } from './directives/passwordvalidator.direc
     EditEmployeeComponent,
     HomeComponent,
     SignInComponent,
-    PasswordvalidatorDirective
+    PasswordvalidatorDirective,
+    RatingInputComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,10 @@ import { PasswordvalidatorDirective } from './directives/passwordvalidator.direc
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    SignInService,
+    {provide: ErrorHandler, useClass: CustomErrorHandler}
+  ],
   // providers: [EmployeeService, UserService],
   bootstrap: [AppComponent]
 })

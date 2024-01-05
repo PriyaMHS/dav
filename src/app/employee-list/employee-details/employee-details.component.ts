@@ -1,4 +1,4 @@
-import { Component, Injector, SimpleChanges, inject } from '@angular/core';
+import { Component, Injector, SimpleChanges,  TemplateRef,  ViewChild,  ViewContainerRef,  inject } from '@angular/core';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Employee } from '../employee.model';
 import { ActivatedRoute } from '@angular/router';
@@ -7,11 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',
   styleUrls: ['./employee-details.component.css'],
-  providers: [
-    {
-      provide: EmployeeService,
-      useFactory: () =>  new EmployeeService()
-  }]
+  providers: [EmployeeService]
 })
 export class EmployeeDetailsComponent {
   injector :Injector = inject(Injector);
@@ -20,7 +16,10 @@ export class EmployeeDetailsComponent {
   employee !:Employee;
   editEmployee: boolean = false;
   data2 = "priya";
-
+  @ViewChild('sayHelloTemplate', { read: TemplateRef }) sayHelloTemplate:TemplateRef<any>;
+  // vref = inject(ViewContainerRef);
+  constructor(private vref:ViewContainerRef) {
+  }
   ngOnInit() {
     let id = parseInt((this.activatedRoute.snapshot.paramMap).get('id'));
     // console.log("pppppppppppppppppppppp", (this.activatedRoute.snapshot.queryParamMap).get('name'));
@@ -39,6 +38,7 @@ export class EmployeeDetailsComponent {
 
   ngAfterViewInit() {
     console.log("View init called");
+    this.vref.createEmbeddedView(this.sayHelloTemplate);
   }
 
   ngAfterViewChecked() {

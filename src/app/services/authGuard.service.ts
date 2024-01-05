@@ -1,27 +1,29 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, inject } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot,RouterStateSnapshot, Router, CanActivate, CanActivateChild, CanLoad, Route, UrlSegment, UrlTree, CanDeactivate } from '@angular/router';
 import { Observable, of, from } from 'rxjs';
 import { UserService } from '../user/user.service';
 import { SignUpComponent } from '../sign-up/sign-up.component';
 import { SignInComponent } from '../sign-in/sign-in.component';
+import { SignInService } from './signIn.service';
  
 @Injectable({
     providedIn: 'root'
 })
 export class AuthGaurdService implements Resolve<any>, CanActivate, CanActivateChild, CanLoad, CanDeactivate<any> {
- 
+    SignInService = inject(SignInService);
     constructor(private _router:Router , private userService:UserService ) {
     }
  
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        let userList:any = [];
-        this.userService.getUserList().then((list: any) => {
-            userList = list;
-        })
-        return userList;
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> {
+        return this.userService.getUserList();
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        // let loggedIn;
+        // this.SignInService.loggedIn$.subscribe((loggdInFlag: boolean) => {
+        //     loggedIn = loggdInFlag;
+        // });
+        // return loggedIn;
         return true;
     }
 

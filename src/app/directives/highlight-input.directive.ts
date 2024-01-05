@@ -5,9 +5,9 @@ import { ElementRef, Renderer2, HostListener } from '@angular/core';
   selector: '[appHighlightInput]'
 })
 export class HighlightInputDirective {
-  private specialKeys: Array<string> = [ 'Backspace', 'Tab'];
+private specialKeys: Array<string> = [ 'Backspace', 'Tab'];
   @Input() color!: string;
-  possibleColors = [
+possibleColors = [
     'darksalmon',
     'hotpink',
     'lightskyblue',
@@ -20,7 +20,7 @@ export class HighlightInputDirective {
   ];
 
   constructor(private elem: ElementRef, private renderer: Renderer2) {
-    // @HostListener('input',['$event']) 
+  // @HostListener('input',['$event']) 
     
     
     // k(e: any):void {
@@ -36,9 +36,9 @@ export class HighlightInputDirective {
   @HostBinding('class') classstr !: string;
   @HostListener('input', ['$event'])
     ngOnChanges(e: any): void {
-      console.log("color  " + this.color);
+console.log("color  " + this.color);
       this.color = this.color? this.color : 'green';
-      const colorPick = Math.floor(Math.random() * this.possibleColors.length);
+const colorPick = Math.floor(Math.random() * this.possibleColors.length);
       if(this.elem.nativeElement.value && this.elem.nativeElement.value.length > 10) {
         this.borderColor = this.color;
         this.classstr = "background";

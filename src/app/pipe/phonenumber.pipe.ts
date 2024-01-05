@@ -8,19 +8,13 @@ export class PhonenumberPipe implements PipeTransform {
   transform(value: string, ...args: string[]): string {
     if(value) {
       if(args && args[0] === "india") {
-        let part1 = value.substr(0,2);
-        let part2 = value.substr(2, 4);
-        let part3 = value.substr(6);
-        return  "+91 " + part1+ " "+ part2 + " " + part3;
+        return  "+91 " + value.slice(0,2)+ " "+ value.slice(2, 6) + " " + value.slice(6);
       }
       else {
-        let part1 = value.substr(0,3);
-        let part2 = value.substr(3, 3);
-        let part3 = value.substr(6);
-        return  "+1 (" + part1+ ") "+ part2 + " - " + part3;
+        return "+1 (" + value.slice(0,3)+ ") "+ value.slice(3, 6) + " - " + value.slice(6);
       }
     }
-     return value;
+    return value;
   }
 
 }

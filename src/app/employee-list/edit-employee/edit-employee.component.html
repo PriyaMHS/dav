@@ -1,6 +1,7 @@
 <div class="card">
   <div class="card-header">
     Employee Details
+    <ng-content select="h2"></ng-content>
   </div>
   <form  [formGroup]="editEmployeeForm" (submit)="saveEmployee(editEmployeeForm)">
     <div class="card-body">
@@ -59,5 +60,6 @@
       <input type="button" value="Clear" class="btn btn-secondary" (click)="resetForm()">
     </div>
   </form>
+  <ng-content select="p"></ng-content>
 </div>
   

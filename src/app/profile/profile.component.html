@@ -1,5 +1,5 @@
 <div class="row">
-  <form [formGroup]="profileForm" (ngSubmit)="saveProfile(profileForm)" novalidate>
+  <form [formGroup]="profileForm" (ngSubmit)="saveProfile(profileForm)" >
     <div class="form-row row">
       <div class="col-md-6 mb-3">
         <label for="validationCustom01">First name</label>
@@ -67,22 +67,23 @@
       </div>
     </div>
     <div class="form-row" formArrayName="skills">
-      <div class="skill-wrap row" *ngFor="let skill of skills.controls; let i=index" >
-        <ng-container [formGroupName]="i">
-          <label for="validationCustom03" class="col-md-12">{{i+1}} Skill</label>
+      <div class="skill-wrap row" *ngFor="let skill of profileForm.get('skills')['controls']; let i=index" >
+          <label for="validationCustom03" class="col-md-12">Skill {{i+1}}</label>
           <div class="col-md-6">
-            <input type="text" class="form-control" id="validationCustom03"  formControlName="skill" placeholder="Slill">
+            <input type="text" class="form-control" id="validationCustom03"  formControlName="{{i}}" placeholder="Skill">
           </div>
           <div class="col-md-6">
             <button class="btn btn-warning" type="submit"  (click)="removeSkill(i)">Remove Skill</button>
           </div>
-        </ng-container>
       </div>
       <div class="row">
         <div class="col-md-12">
           <button class="btn btn-primary" (click)="addskill()" type="submit">Add Skill</button>
         </div>
       </div>
+    </div>
+    <div class="form-row">
+      <app-rating-input formControlName="rating" [disabled]="disabled" (starsOut)="getStar($event)"></app-rating-input>
     </div>
     <div class="col-md-12">
       <div class="error" *ngIf="profileForm.errors?.['invalidForm']">

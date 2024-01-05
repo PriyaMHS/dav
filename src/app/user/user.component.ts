@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { UserService } from './user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Subject, Subscription, interval, takeUntil, take, flatMap,fromEvent,debounceTime, mergeMap, switchMap, distinctUntilChanged } from 'rxjs';
+import { Subject, Subscription, interval, takeUntil, take, fromEvent,debounceTime, mergeMap, switchMap, distinctUntilChanged, timer } from 'rxjs';
 
 @Component({
   selector: 'app-user',
@@ -14,7 +14,7 @@ export class UserComponent {
   selectedUser!: number;
   siteAdminType!: string;
   // destroy$: Subject<boolean> = new Subject<boolean>();
-  destroy$ !: Subscription;
+  // destroy$ !: Subscription;
   activateRoute: ActivatedRoute = inject(ActivatedRoute);
   p = 1;
   constructor(private userService: UserService, private router: Router, private http: HttpClient) {
@@ -33,24 +33,29 @@ export class UserComponent {
     // })
   
 
-    // this.destroy$ = interval(1000).pipe(flatMap(() => this.userService.getUserList())).subscribe((list: any)=> {
+    // this.destroy$ = interval(1000).pipe(mergeMap(() => this.userService.getUserList())).subscribe((list: any)=> {
     //   this.userList = list;
     // })
     // let index = 1;
-    // interval(1000).pipe(take(5),flatMap(() => this.userService.getUserList())).subscribe((list: any)=> {
+    // interval(1000)
+    // timer(1000, 1000)
+    // .pipe(take(5), mergeMap(() => this.userService.getUserList())).subscribe((list: any)=> {
     //   console.log("called " + index);
     //   index++;
     //   this.userList = list;
     // })
+
+    
     //promise
     // this.activateRoute.params.subscribe((params) => {
     //   console.log("pppppppppppppppp",params);
     // })
-    this.userService.getUserList().then((list: any)=>{
-      this.userList = list;
-    })
+    // this.userService.getUserList().then((list: any)=>{
+    //   this.userList = list;
+    // })
+     this.userList = this.activateRoute.snapshot.data['userData'];
 
-    // this.rxjsFunCall();
+     this.rxjsFunCall();
 
     // this.promiseChain();
     // this.promiseAllMethod();

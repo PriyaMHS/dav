@@ -1,10 +1,16 @@
-
 <div *ngIf="employee">
   <div class="row">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
           Employee Details
+          <!-- <ng-container *ngIf="data2 !== 'priya'; else elseblock" >Employee Details1</ng-container> -->
+          <ng-container *ngTemplateOutlet="elseblock" >Employee Details1</ng-container>
+          <ng-template #elseblock>Employee Details2</ng-template>
+          <ng-template #sayHelloTemplate [ngIf]="true">
+            <p> Say Hello</p>
+          </ng-template>           
+          <ng-content></ng-content>
         </div>
         <div class="card-body">
           <p class="card-text">User Id : {{employee.id}}</p>
@@ -18,7 +24,10 @@
       </div>
     </div>
     <div class="col-md-12">
-      <app-edit-employee (randata)="data2" *ngIf="editEmployee" [editEmployeeData]="employee" (emitEmployee)="updateEmployee($event)"></app-edit-employee>
+      <app-edit-employee (randata)="data2" *ngIf="editEmployee" [editEmployeeData]="employee" (emitEmployee)="updateEmployee($event)">
+        <h2>Heeloeeeeeee</h2>
+        <p>Byyyyyyyyyyyyyyyyy</p>
+      </app-edit-employee>
     </div>
   </div>  
 </div>

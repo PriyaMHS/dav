@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
-import { AbstractControlOptions, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, ViewChild, inject } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {ValidateFirstName, ValidateForm } from '../custom.validator';
+import { RatingInputComponent } from '../rating-input/rating-input.component';
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +13,8 @@ export class ProfileComponent {
   profileForm: FormGroup;
   ingredient!: string;
   newSkills;
+  disabled = true;
+  @ViewChild(RatingInputComponent) ratingComp;
 
   formbuilder = inject(FormBuilder);
 
@@ -23,23 +26,12 @@ export class ProfileComponent {
       city: [null, Validators.required],
       state: [null, Validators.required],
       zip: [null, Validators.required],
-      skills: this.formbuilder.array([])
-    }, {validators:ValidateForm} as  AbstractControlOptions
+      skills: this.formbuilder.array([new FormControl(null, Validators.required)]),
+      rating: ['', Validators.required],
+      abc: ['', Validators.required]
+      }, 
+      { validators: ValidateForm }
     )
-  }
-
-  get skills() : FormArray {
-    return this.profileForm.get("skills") as FormArray
-  }
-
-  comparisonValidator(g: FormGroup) {
-
-  }
- 
-  newSkill(): FormGroup {
-    return this.formbuilder.group({
-      skill: ''
-    })
   }
 
   saveProfile(profile) {
@@ -47,13 +39,22 @@ export class ProfileComponent {
     console.log(profile.value);
   }
  
+  ngOnChanges(values) {
+    console.log("ppppppppppppp" , values);
+  }
  
+  getStar(stars) {
+    console.log("stars", stars);
+    // let value = this.ratingComp.getStar();
+    // console.log("vannnnnnnnnnnnlue", value);
+    this.profileForm.get('rating').setValue(stars);
+  }
 
   addskill() {
-    this.skills.push(this.newSkill());
+    (<FormArray>this.profileForm.get("skills")).push(new FormControl(null, Validators.required));
   }
 
   removeSkill(i:number) {
-    this.skills.removeAt(i);
+    (<FormArray>this.profileForm.get("skills")).removeAt(i);
   }
 }

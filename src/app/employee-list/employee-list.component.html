@@ -10,9 +10,8 @@
   </div>
 </div>
 
-
 <div class="table-responsive-lg">
-  <p>{{hello}} employee-list works!</p>
+  <!-- <p>{{hello}} employee-list works!</p> -->
   <table class="table table-striped">
     <thead class="thead-light">
       <tr>
@@ -25,13 +24,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let employee of employeeList, let even= even">
+      <tr *ngFor="let employee of employeeList, let even= even, trackBy:trackById">
         <td>{{employee.id}}</td>
         <td>{{employee.name}}</td>
         <td>{{employee.position}}</td>
         <td>{{employee.project}}</td>
         <td *ngIf="even">{{employee.phone | phonenumber }}</td>
-        <td *ngIf="!even">{{employee.phone | phonenumber }}</td>
+        <td *ngIf="!even">{{employee.phone | phonenumber : 'india'}}</td>
         <td>
           <a href="javascript:void(0)" (click)="viewDetails(employee.id)" class="btn btn-secondary">View</a> 
         </td>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject, pipe, map, filter, tap,take, forkJoin, of, from, debounceTime, pluck, switchMap, mergeMap, distinctUntilChanged } from 'rxjs';
+import { BehaviorSubject, Subject, lastValueFrom, pipe, map, filter, tap,take, forkJoin, of, from, debounceTime, pluck, switchMap, mergeMap, distinctUntilChanged } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -18,11 +18,12 @@ export class UserService {
     //   filter((x: any)=> x),
     //   take(5)
     // );
-    return this.http.get('https://api.github.com/users').toPromise();
+    return lastValueFrom(this.http.get('https://api.github.com/users'));
   }
 
   getUserByUserId(id) {
     return this.http.get('https://api.github.com/users').pipe(
+      tap(x=> console.log("Got users data from api")),
       map((userList: any) => userList.filter(user => user.id === id)[0])
     )
   }
@@ -35,11 +36,12 @@ export class UserService {
   }
 
   getUserJson() {
-    return this.http.get('https://api.github.com/users').toPromise();
+    return lastValueFrom(this.http.get('https://api.github.com/users'));
   }
 
   googleUsers() {
     return this.http.get('https://api.github.com/users/google').toPromise();
+    // return this.http.get('https://api.github.com/users/google');
   }
 
   microsoftUsers() {
@@ -47,35 +49,28 @@ export class UserService {
   }
 
 
-  getData(data: any) {
-    return of(data + " video uploaded");
-  }
-
   forkMethod() {
     let a = this.http.get('https://api.github.com/users');
     let b = this.http.get('https://api.github.com/users/google');
     let c = this.http.get('https://api.github.com/users/microsoft');
     
     // return a.pipe(pluck('id'))
-    return from([a,a, a]).pipe(
-      distinctUntilChanged()
-    )
-
-    // return of('apple', 'banana','chiku').pipe(
-    //   mergeMap((data) => this.getData(data))
+    // return from([a,a,a]).pipe(
+    //   distinctUntilChanged()
     // )
 
     // return of('apple', 'banana','chiku').pipe(
-    //   switchMap((data) => this.getData(data))
+    //   mergeMap((data) =>  of("Got " + data))
     // )
 
-    // return a.pipe(switchMap((user: any) => { 
-    //   console.log("user", user);
-    //   return b}),
-    //   switchMap((google)=> {
-    //   console.log("google", google);
-    //    return c;
-    //   }));
+
+    return a.pipe(switchMap((user: any) => { 
+      console.log("user", user);
+      return b}),
+      switchMap((google)=> {
+      console.log("google", google);
+       return c;
+      }));
     //  return forkJoin([a,b,c]);
   }
 
