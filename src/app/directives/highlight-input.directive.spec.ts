@@ -42,9 +42,9 @@ describe('HighlightInputDirective', () => {
       ctrlKey: false
     };
     const event = new KeyboardEvent('input', eventInit);
-    spyOn(directive, 'ngChanges').and.callThrough();
+    spyOn(directive, 'ngOnChanges').and.callThrough();
     directiveElm.triggerEventHandler('input', event);
-    expect(directive.ngChanges).toHaveBeenCalled();
+    expect(directive.ngOnChanges).toHaveBeenCalled();
     expect(directive.color).toEqual('red');
   });
 });
